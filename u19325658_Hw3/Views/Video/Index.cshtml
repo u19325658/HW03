@@ -2,28 +2,45 @@
 @using u19325658_Hw3.Models;
 @model List<FileModel>
 
-<h2>FileSafe Database</h2><br/>
-<h4>Uploaded Videos</h4><br/>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css" type="text/css" media="screen" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+</head>
+
+<script>
+    $(document).ready(function ($) {
+        $(".gallery a").fancybox();
+    });
+</script>
+
+<h2>FileSafe Database</h2>
+<br />
+<h4>Uploaded Videos</h4>
+<br />
 <div class="container-fluid">
     <div class="row">
         @foreach (FileModel file in Model)
         {
-            <div class="col-sm-4">
-                <div>
-                    <video src="@Url.Content("~/Media/Videos/")@file.FileName" height="349" width="350" />
-                </div>
-                <p>@file.FileName</p>
-                <br />
-                <button>
-                    @Html.ActionLink("Download", "DownloadFile",
-                   new { fileName = file.FileName})
-                </button>
-                <button>
-                    @Html.ActionLink("Delete", "DeleteFile",
-                   new { fileName = file.FileName})
-                </button>
+        <div class="col-sm-4">
 
+            <div class="gallery">
+                <a href="@Url.Content("~/Media/Videos/")@file.FileName">
+                    <video src="@Url.Content("~/Media/Videos/")@file.FileName" height="350" width="350"></video>
+                </a>
             </div>
+            <p>@file.FileName</p>
+            <br />
+            <button>
+                @Html.ActionLink("Download", "DownloadFile",
+               new { fileName = file.FileName })
+            </button>
+            <button>
+                @Html.ActionLink("Delete", "DeleteFile",
+               new { fileName = file.FileName })
+            </button>
+
+        </div>
         }
     </div>
 </div>
