@@ -1,0 +1,28 @@
+﻿@using u19325658_Hw3.Models;
+@model List<FileModel>
+
+<h1>Images</h1>
+
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (FileModel file in Model)
+            {
+            <div class="col-sm-4">
+                <img src="@Url.Content("~/Media/Images/")@file.FileName" height="350" width="350" />
+                <br />
+                <p>@file.FileName</p>
+                <br />
+                <button>
+                    @Html.ActionLink("Download", "DownloadFile",
+                    new { fileName = file.FileName })
+                </button>
+                <button>
+                    @Html.ActionLink("Delete", "DeleteFile",
+                    new { fileName = file.FileName })
+                </button>
+
+            </div>
+                    }
+            </div>
+    </div>
+

@@ -1,0 +1,45 @@
+﻿@using u19325658_Hw3.Models;
+@model List<FileModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2> <br />
+<h4></h4>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            File Name
+        </th>
+        <th>
+            DOWNLOAD OPTION
+        </th>
+        <th>
+            DELETE OPTION
+        </th>
+    </tr>
+
+@foreach (FileModel file in Model) {
+    <tr>
+       <td>
+           @file.FileName
+       </td>
+       <td>
+           <button>
+               @Html.ActionLink("Download", "DownloadFile",
+              new { fileName = file.FileName})
+           </button>
+       </td>
+       <td>
+           <button>
+               @Html.ActionLink("Delete", "DeleteFile",
+              new { fileName = file.FileName })
+           </button>
+       </td>
+    </tr>
+}
+
+</table>

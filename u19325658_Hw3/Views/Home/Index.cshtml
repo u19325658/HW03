@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="header">
+    <h2>FileSafe</h2>
+    <h3>What we FileSafe is all about</h3>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            <p>
+                FileSafe is a media uploading system where you can upload Documents, Images or videos from your PC or computer.
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <p>Please select the type of file you wish upload:</p>
+            <br />
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div>
+                    @Html.RadioButton("mediaUpload", "document") Document <br />
+                    @Html.RadioButton("mediaUpload", "image") Image <br />
+                    @Html.RadioButton("mediaUpload", "video") Video <br />
+                </div>
+                <br />
+                <div><input type="file" name="files" /></div>
+                <br />
+                <div><input type="submit" value="Upload" /></div>
+            }
+
+        </div>
+    </div>
+</div>
